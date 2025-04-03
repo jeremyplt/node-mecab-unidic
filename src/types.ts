@@ -42,17 +42,13 @@ export type Feature = {
   conjugatedType?: string;
   conjugatedForm?: string;
   
-  // Original IPADic fields
   basicForm?: string;
+	basicFormPronunciation?: string;
+	basicFormReading?: string,
+
   reading?: string;
   pronunciation?: string;
-	writtenBaseForm?: string
   
-  // New UniDic fields
-  lemmaReading?: string;
-  lemma?: string;
-  pronouncedForm?: string;
-  writtenForm?: string;
   language?: string;
   
   // Original feature array for reference
