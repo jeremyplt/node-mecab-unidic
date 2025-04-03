@@ -1,6 +1,6 @@
 {
   "name": "node-mecab-unidic",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "MeCab/Unidic wrapper for Node.js",
   "type": "module",
   "exports": {

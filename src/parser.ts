@@ -57,8 +57,6 @@ export const parseFeature = (feature = ''): Feature => {
       pronunciation, // 発音形出現形 - Surface pronunciation
       basicFormWriting, // 書字形出現形 - Surface written form
       basicFormPronunciation,
-      word,
-      language, // 語種 - Language type (漢, 混, etc.)
       // ... there might be more fields that we'll capture in _
     ] = features;
 
