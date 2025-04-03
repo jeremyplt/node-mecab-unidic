@@ -45,7 +45,7 @@ export type Feature = {
   basicForm?: string;
 	basicFormPronunciation?: string;
 	basicFormReading?: string,
-	basicFormReadingHiragana?: string,
+	basicFormWritting?: string,
 
   reading?: string;
   pronunciation?: string;

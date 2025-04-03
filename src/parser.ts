@@ -55,7 +55,7 @@ export const parseFeature = (feature = ''): Feature => {
       basicForm, // 語彙素 - Lemma/dictionary form (今日は)
     	reading, // 発音形 - Pronunciation (コンニチワ)
       pronunciation, // 発音形出現形 - Surface pronunciation
-      basicFormReadingHiragana, // 書字形出現形 - Surface written form
+      basicFormWritting, // 書字形出現形 - Surface written form
       basicFormPronunciation,
       word,
       language, // 語種 - Language type (漢, 混, etc.)
@@ -76,7 +76,7 @@ export const parseFeature = (feature = ''): Feature => {
       basicForm: mecabNaToUndefined(basicForm),
       basicFormPronunciation: mecabNaToUndefined(basicFormPronunciation),
       basicFormReading: mecabNaToUndefined(basicFormReading), // Map to what was basicForm in IPADic
-      basicFormReadingHiragana: mecabNaToUndefined(basicFormReadingHiragana),
+      basicFormWritting: mecabNaToUndefined(basicFormWritting),
 
       reading: mecabNaToUndefined(reading),
       pronunciation: mecabNaToUndefined(pronunciation),
