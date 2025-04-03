@@ -4,7 +4,7 @@ import {getStat, mecabNaToUndefined} from './util.js';
 export const parseFeature = (feature = ''): Feature => {
   const features = feature.split(',');
 
-  	// 0: 感動詞,
+  // 0: 感動詞,
 	// 1:	一般,
 	// 2: *,
 	// 3:	*,
@@ -28,13 +28,13 @@ export const parseFeature = (feature = ''): Feature => {
   // '*',
   // '五段-ラ行',
   // '連用形-促音便',
-  // 'ナル',
-  // '成る',
-  // 'なっ',
-  // 'ナッ',
-  // 'なる',
-  // 'ナル',
-  // '和',
+  // 6: 'ナル',
+  // 7: '成る',
+  // 8: 'なっ',
+  // 9: 'ナッ',
+  // 10: 'なる',
+  // 11: 'ナル',
+  // 12: '和',
   // '*',
   // '*',
   // '*',
@@ -51,11 +51,12 @@ export const parseFeature = (feature = ''): Feature => {
       posSub3, // 品詞細分類3 - POS subdivision 3
       conjugatedType, // 活用型 - Conjugation type
       conjugatedForm, // 活用形 - Conjugation form
-      basicFormPronunciation, // 語彙素読み - Lemma reading (コンニチハ)
+      basicFormReading, // 語彙素読み - Lemma reading (コンニチハ)
       basicForm, // 語彙素 - Lemma/dictionary form (今日は)
     	reading, // 発音形 - Pronunciation (コンニチワ)
       pronunciation, // 発音形出現形 - Surface pronunciation
-      basicFormReading, // 書字形出現形 - Surface written form
+      basicFormReadingHiragana, // 書字形出現形 - Surface written form
+      basicFormPronunciation,
       word,
       language, // 語種 - Language type (漢, 混, etc.)
       // ... there might be more fields that we'll capture in _
@@ -75,6 +76,7 @@ export const parseFeature = (feature = ''): Feature => {
       basicForm: mecabNaToUndefined(basicForm),
       basicFormPronunciation: mecabNaToUndefined(basicFormPronunciation),
       basicFormReading: mecabNaToUndefined(basicFormReading), // Map to what was basicForm in IPADic
+      basicFormReadingHiragana: mecabNaToUndefined(basicFormReadingHiragana),
 
       reading: mecabNaToUndefined(reading),
       pronunciation: mecabNaToUndefined(pronunciation),
