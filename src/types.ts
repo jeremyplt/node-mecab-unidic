@@ -37,26 +37,26 @@ export type MecabOptions = {
 
 // Ref: https://taku910.github.io/mecab/#usage-tools (Japanese)
 export type Feature = {
-	// 品詞 (part of speech)
-	pos?: string;
-
-	// 品詞細分類1, 品詞細分類2, 品詞細分類3
-	posSubs: [string | undefined, string | undefined, string | undefined];
-
-	// 活用型
-	conjugatedType?: string;
-
-	// 活用形
-	conjugatedForm?: string;
-
-	// 原形
-	basicForm?: string;
-
-	// 読み
-	reading?: string;
-
-	// 発音
-	pronunciation?: string;
+  pos?: string;
+  posSubs: Array<string | undefined>;
+  conjugatedType?: string;
+  conjugatedForm?: string;
+  
+  // Original IPADic fields
+  basicForm?: string;
+  reading?: string;
+  pronunciation?: string;
+	writtenBaseForm?: string
+  
+  // New UniDic fields
+  lemmaReading?: string;
+  lemma?: string;
+  pronouncedForm?: string;
+  writtenForm?: string;
+  language?: string;
+  
+  // Original feature array for reference
+  _original?: string[];
 };
 
 // Ref: https://github.com/taku910/mecab/blob/046fa78b2ed56fbd4fac312040f6d62fc1bc31e3/mecab/src/mecab.h#L218-L243

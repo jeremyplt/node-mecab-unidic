@@ -2,32 +2,101 @@ import type {Feature, Token} from './types.js';
 import {getStat, mecabNaToUndefined} from './util.js';
 
 export const parseFeature = (feature = ''): Feature => {
-	const [
-		pos,
-		posSub1,
-		posSub2,
-		posSub3,
-		conjugatedType,
-		conjugatedForm,
-		basicForm,
-		reading,
-		pronunciation,
-	] = feature.split(',');
+  const features = feature.split(',');
 
-	return {
-		pos: mecabNaToUndefined(pos),
-		posSubs: [
-			mecabNaToUndefined(posSub1),
-			mecabNaToUndefined(posSub2),
-			mecabNaToUndefined(posSub3),
-		],
-		conjugatedType: mecabNaToUndefined(conjugatedType),
-		conjugatedForm: mecabNaToUndefined(conjugatedForm),
-		basicForm: mecabNaToUndefined(basicForm),
-		reading: mecabNaToUndefined(reading),
-		pronunciation: mecabNaToUndefined(pronunciation),
-	};
+	// 0: 感動詞,
+	// 1:	一般,
+	// 2: *,
+	// 3:	*,
+	// 4:	*,
+	// 5:	*,
+	// 6:	コンニチハ,
+	// 7:	今日は,
+	// 8:	こんにちは,
+	// 9:	コンニチワ,
+	// 10:	こんにちは,
+	// 11:	コンニチワ,
+	// 12:	混,
+	// 13:	*,
+	// 14:	*,
+	// 15:	*,
+	// 16:	*
+  
+  // UniDic format has more fields than IPADic
+  if (features.length >= 17) { // Check if it's likely UniDic format
+    const [
+      pos, // 品詞 - Part of speech
+      posSub1, // 品詞細分類1 - POS subdivision 1
+      posSub2, // 品詞細分類2 - POS subdivision 2
+      posSub3, // 品詞細分類3 - POS subdivision 3
+      conjugatedType, // 活用型 - Conjugation type
+      conjugatedForm, // 活用形 - Conjugation form
+      lemmaReading, // 語彙素読み - Lemma reading (コンニチハ)
+      lemma, // 語彙素 - Lemma/dictionary form (今日は)
+    	writtenForm, // 発音形 - Pronunciation (コンニチワ)
+      pronunciation, // 発音形出現形 - Surface pronunciation
+      writtenBaseForm, // 書字形出現形 - Surface written form
+      language, // 語種 - Language type (漢, 混, etc.)
+      // ... there might be more fields that we'll capture in _
+    ] = features;
+
+    return {
+      pos: mecabNaToUndefined(pos),
+      posSubs: [
+        mecabNaToUndefined(posSub1),
+        mecabNaToUndefined(posSub2),
+        mecabNaToUndefined(posSub3),
+      ],
+      conjugatedType: mecabNaToUndefined(conjugatedType),
+      conjugatedForm: mecabNaToUndefined(conjugatedForm),
+      
+      // These are the key fields being reordered/renamed for UniDic
+      lemmaReading: mecabNaToUndefined(lemmaReading),
+      lemma: mecabNaToUndefined(lemma),
+      basicForm: mecabNaToUndefined(writtenBaseForm), // Map to what was basicForm in IPADic
+			writtenBaseForm: mecabNaToUndefined(writtenBaseForm),
+      
+      // Additional UniDic fields
+      pronunciation: mecabNaToUndefined(pronunciation),
+      writtenForm: mecabNaToUndefined(writtenForm),
+      // language: mecabNaToUndefined(language),
+      
+      // Keep original reading field for backward compatibility
+      // reading: mecabNaToUndefined(lemma), // In UniDic, lemma is closest to reading in IPADic
+      
+      // Store all fields for reference
+      _original: features,
+    };
+  } else {
+    // Fall back to IPADic format for backward compatibility
+    const [
+      pos,
+      posSub1,
+      posSub2,
+      posSub3,
+      conjugatedType,
+      conjugatedForm,
+      basicForm,
+      reading,
+      pronunciation,
+    ] = features;
+
+    return {
+      pos: mecabNaToUndefined(pos),
+      posSubs: [
+        mecabNaToUndefined(posSub1),
+        mecabNaToUndefined(posSub2),
+        mecabNaToUndefined(posSub3),
+      ],
+      conjugatedType: mecabNaToUndefined(conjugatedType),
+      conjugatedForm: mecabNaToUndefined(conjugatedForm),
+      basicForm: mecabNaToUndefined(basicForm),
+      reading: mecabNaToUndefined(reading),
+      pronunciation: mecabNaToUndefined(pronunciation),
+    };
+  }
 };
+
 
 export const parseDump = (dump: string): Token[] => {
 	return dump.split(/\r?\n/).map<Token>((row) => {

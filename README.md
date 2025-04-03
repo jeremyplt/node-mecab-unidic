@@ -11,7 +11,7 @@ MeCab wrapper for Node.js
 ## Install
 
 ```bash
-npm i @enjoyjs/node-mecab
+npm i node-mecab-unidic
 ```
 
 ## API
@@ -19,7 +19,7 @@ npm i @enjoyjs/node-mecab
 ### analyze(text: string, options?: [MecabOptions][mecaboptions]): Promise\<string\>
 
 ```js
-import { analyze } from "@enjoyjs/node-mecab";
+import { analyze } from "node-mecab-unidic";
 
 const result = await analyze("こんにちは世界");
 console.log(result);
@@ -34,7 +34,7 @@ EOS
 ### analyzeSync(text: string, options?: [MecabOptions][mecaboptions]): string
 
 ```js
-import { analyzeSync } from "@enjoyjs/node-mecab";
+import { analyzeSync } from "node-mecab-unidic";
 
 const result = analyzeSync("こんにちは世界");
 console.log(result);
@@ -45,7 +45,7 @@ console.log(result);
 ### tokenize(text: string, options?: [MecabOptions][mecaboptions]): Promise\<[Token][token][]\>
 
 ```js
-import { tokenize } from "@enjoyjs/node-mecab";
+import { tokenize } from "node-mecab-unidic";
 
 const result = await tokenize("こんにちは世界");
 console.log(result);
@@ -113,7 +113,7 @@ console.log(result);
 ### tokenizeSync(text: string, options?: [MecabOptions][mecaboptions]): [Token][token][]
 
 ```js
-import { tokenizeSync } from "@enjoyjs/node-mecab";
+import { tokenizeSync } from "node-mecab-unidic";
 
 const result = tokenizeSync("こんにちは世界");
 console.log(result);
@@ -124,7 +124,7 @@ console.log(result);
 ### wakati(text: string, options?: [MecabOptions][mecaboptions]): Promise\<string[][]\>
 
 ```js
-import { wakati } from "@enjoyjs/node-mecab";
+import { wakati } from "node-mecab-unidic";
 
 const result = await wakati("こんにちは世界");
 console.log(result);
@@ -137,7 +137,7 @@ console.log(result);
 ### wakatiSync(text: string, options?: [MecabOptions][mecaboptions]): string[][]
 
 ```js
-import { wakatiSync } from "@enjoyjs/node-mecab";
+import { wakatiSync } from "node-mecab-unidic";
 
 const result = wakatiSync("こんにちは世界");
 console.log(result);

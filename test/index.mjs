@@ -5,9 +5,9 @@ import {
 	tokenizeSync,
 	wakati,
 	wakatiSync,
-} from '@enjoyjs/node-mecab';
+} from 'node-mecab-unidic';
 
-const text = 'こんにちは世界';
+const text = '日本に行くことになった時';
 
 Promise.all([analyze(text), tokenize(text), wakati(text)]).then((results) => {
 	for (const result of results) {
