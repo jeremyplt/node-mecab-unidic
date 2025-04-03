@@ -42,10 +42,10 @@ export type Feature = {
   conjugatedType?: string;
   conjugatedForm?: string;
   
-  basicForm?: string;
+  lemma?: string;
+	basicForm?: string,
 	basicFormPronunciation?: string;
 	basicFormReading?: string,
-	basicFormWriting?: string,
 
   reading?: string;
   pronunciation?: string;

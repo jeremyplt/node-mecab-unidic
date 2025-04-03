@@ -52,10 +52,10 @@ export const parseFeature = (feature = ''): Feature => {
       conjugatedType, // 活用型 - Conjugation type
       conjugatedForm, // 活用形 - Conjugation form
       basicFormReading, // 語彙素読み - Lemma reading (コンニチハ)
-      basicForm, // 語彙素 - Lemma/dictionary form (今日は)
+      lemma, // 語彙素 - Lemma/dictionary form (今日は)
     	reading, // 発音形 - Pronunciation (コンニチワ)
       pronunciation, // 発音形出現形 - Surface pronunciation
-      basicFormWriting, // 書字形出現形 - Surface written form
+      basicForm, // 書字形出現形 - Surface written form
       basicFormPronunciation,
       // ... there might be more fields that we'll capture in _
     ] = features;
@@ -71,10 +71,10 @@ export const parseFeature = (feature = ''): Feature => {
       conjugatedForm: mecabNaToUndefined(conjugatedForm),
       
       // These are the key fields being reordered/renamed for UniDic
+      lemma: mecabNaToUndefined(lemma),
       basicForm: mecabNaToUndefined(basicForm),
       basicFormPronunciation: mecabNaToUndefined(basicFormPronunciation),
       basicFormReading: mecabNaToUndefined(basicFormReading), // Map to what was basicForm in IPADic
-      basicFormWriting: mecabNaToUndefined(basicFormWriting),
 
       reading: mecabNaToUndefined(reading),
       pronunciation: mecabNaToUndefined(pronunciation),
