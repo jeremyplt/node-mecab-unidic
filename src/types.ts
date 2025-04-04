@@ -37,8 +37,10 @@ export type MecabOptions = {
 
 // Ref: https://taku910.github.io/mecab/#usage-tools (Japanese)
 export type Feature = {
-  pos?: string;
-  posSubs: Array<string | undefined>;
+  pos1?: string;
+	pos2?: string;
+	pos3?: string;
+	pos4?: string;
   conjugatedType?: string;
   conjugatedForm?: string;
   

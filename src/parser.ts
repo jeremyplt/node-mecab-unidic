@@ -45,10 +45,10 @@ export const parseFeature = (feature = ''): Feature => {
   // UniDic format has more fields than IPADic
   if (features.length >= 17) { // Check if it's likely UniDic format
     const [
-      pos, // 品詞 - Part of speech
-      posSub1, // 品詞細分類1 - POS subdivision 1
-      posSub2, // 品詞細分類2 - POS subdivision 2
-      posSub3, // 品詞細分類3 - POS subdivision 3
+      pos1, // 品詞 - Part of speech
+      pos2, // 品詞細分類1 - POS subdivision 1
+      pos3, // 品詞細分類2 - POS subdivision 2
+      pos4, // 品詞細分類3 - POS subdivision 3
       conjugatedType, // 活用型 - Conjugation type
       conjugatedForm, // 活用形 - Conjugation form
       basicFormReading, // 語彙素読み - Lemma reading (コンニチハ)
@@ -61,12 +61,10 @@ export const parseFeature = (feature = ''): Feature => {
     ] = features;
 
     return {
-      pos: mecabNaToUndefined(pos),
-      posSubs: [
-        mecabNaToUndefined(posSub1),
-        mecabNaToUndefined(posSub2),
-        mecabNaToUndefined(posSub3),
-      ],
+      pos1: mecabNaToUndefined(pos1),
+      pos2: mecabNaToUndefined(pos2),
+      pos3: mecabNaToUndefined(pos3),
+      pos4: mecabNaToUndefined(pos4),
       conjugatedType: mecabNaToUndefined(conjugatedType),
       conjugatedForm: mecabNaToUndefined(conjugatedForm),
       
@@ -85,10 +83,10 @@ export const parseFeature = (feature = ''): Feature => {
   } else {
     // Fall back to IPADic format for backward compatibility
     const [
-      pos,
-      posSub1,
-      posSub2,
-      posSub3,
+      pos1,
+      pos2,
+      pos3,
+      pos4,
       conjugatedType,
       conjugatedForm,
       basicForm,
@@ -97,12 +95,10 @@ export const parseFeature = (feature = ''): Feature => {
     ] = features;
 
     return {
-      pos: mecabNaToUndefined(pos),
-      posSubs: [
-        mecabNaToUndefined(posSub1),
-        mecabNaToUndefined(posSub2),
-        mecabNaToUndefined(posSub3),
-      ],
+      pos1: mecabNaToUndefined(pos1),
+      pos2: mecabNaToUndefined(pos2),
+      pos3: mecabNaToUndefined(pos3),
+      pos4: mecabNaToUndefined(pos4),
       conjugatedType: mecabNaToUndefined(conjugatedType),
       conjugatedForm: mecabNaToUndefined(conjugatedForm),
       basicForm: mecabNaToUndefined(basicForm),
