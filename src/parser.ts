@@ -3,6 +3,7 @@ import {getStat, mecabNaToUndefined} from './util.js';
 
 export const parseFeature = (feature = ''): Feature => {
   const features = feature.split(',');
+  console.log('features', features)
 
   // 0: 感動詞,
 	// 1:	一般,
@@ -41,6 +42,37 @@ export const parseFeature = (feature = ''): Feature => {
   // '*'
 
 
+// features [
+  // '動詞',
+  //'一般',
+  // '*',          
+  //'*',
+  // '五段-ワア行', 
+  // '連用形-一般',
+  // 'イウ',        
+  // '言う',
+  // '言い',        
+  // 'イー',
+  // '言う',        
+  // 'イウ',
+  // '和',          
+  // '*',
+  // '*',          
+  // '*',
+  // '*',           
+  // '*',
+  // '*',           
+  // '用',
+  // 'イイ',        
+  // 'イウ',
+  // 'イイ',       
+  // 'イウ',
+  // '0',          
+  // 'C2',
+  // '*',           
+  // '431841882546817',
+// '1571'
+// ]
   
   // UniDic format has more fields than IPADic
   if (features.length >= 17) { // Check if it's likely UniDic format
@@ -53,10 +85,19 @@ export const parseFeature = (feature = ''): Feature => {
       conjugatedForm, // 活用形 - Conjugation form
       basicFormReading, // 語彙素読み - Lemma reading (コンニチハ)
       lemma, // 語彙素 - Lemma/dictionary form (今日は)
-    	reading, // 発音形 - Pronunciation (コンニチワ)
+    	null0, // 発音形 - Pronunciation (コンニチワ)
       pronunciation, // 発音形出現形 - Surface pronunciation
       basicForm, // 書字形出現形 - Surface written form
       basicFormPronunciation,
+      null1,
+      null2,
+      null3,
+      null4,
+      null5,
+      null6,
+      null7,
+      null8,
+      reading
       // ... there might be more fields that we'll capture in _
     ] = features;
 
