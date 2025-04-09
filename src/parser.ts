@@ -2,78 +2,32 @@ import type {Feature, Token} from './types.js';
 import {getStat, mecabNaToUndefined} from './util.js';
 
 export const parseFeature = (feature = ''): Feature => {
-  const features = feature.split(',');
-  // console.log('features', features)
-
-  // 0: 感動詞,
-	// 1:	一般,
-	// 2: *,
-	// 3:	*,
-	// 4:	*,
-	// 5:	*,
-	// 6:	コンニチハ,
-	// 7:	今日は,
-	// 8:	こんにちは,
-	// 9:	コンニチワ,
-	// 10:	こんにちは,
-	// 11:	コンニチワ,
-	// 12:	混,
-	// 13:	*,
-	// 14:	*,
-	// 15:	*,
-	// 16:	*
-
-  // '動詞',
-  // '非自立可能',
-  // '*',
-  // '*',
-  // '五段-ラ行',
-  // '連用形-促音便',
-  // 6: 'ナル',
-  // 7: '成る',
-  // 8: 'なっ',
-  // 9: 'ナッ',
-  // 10: 'なる',
-  // 11: 'ナル',
-  // 12: '和',
-  // '*',
-  // '*',
-  // '*',
-  // '*'
-
-
-// features [
-  // '動詞',
-  //'一般',
-  // '*',          
-  //'*',
-  // '五段-ワア行', 
-  // '連用形-一般',
-  // 'イウ',        
-  // '言う',
-  // '言い',        
-  // 'イー',
-  // '言う',        
-  // 'イウ',
-  // '和',          
-  // '*',
-  // '*',          
-  // '*',
-  // '*',           
-  // '*',
-  // '*',           
-  // '用',
-  // 'イイ',        
-  // 'イウ',
-  // 'イイ',       
-  // 'イウ',
-  // '0',          
-  // 'C2',
-  // '*',           
-  // '431841882546817',
-// '1571'
-// ]
+  // Split by comma, but respecting quoted values
+  const features = [];
+  let current = '';
+  let insideQuotes = false;
   
+  for (let i = 0; i < feature.length; i++) {
+    const char = feature[i];
+    
+    if (char === '"') {
+      insideQuotes = !insideQuotes;
+      current += char;
+    } else if (char === ',' && !insideQuotes) {
+      features.push(current);
+      current = '';
+    } else {
+      current += char;
+    }
+  }
+  
+  // Don't forget the last part
+  if (current) {
+    features.push(current);
+  }
+
+  console.log('features', features)
+
   // UniDic format has more fields than IPADic
   if (features.length >= 17) { // Check if it's likely UniDic format
     const [
@@ -85,7 +39,7 @@ export const parseFeature = (feature = ''): Feature => {
       conjugatedForm, // 活用形 - Conjugation form
       basicFormReading, // 語彙素読み - Lemma reading (コンニチハ)
       lemma, // 語彙素 - Lemma/dictionary form (今日は)
-    	null0, // 発音形 - Pronunciation (コンニチワ)
+      null0, // 発音形 - Pronunciation (コンニチワ)
       pronunciation, // 発音形出現形 - Surface pronunciation
       basicForm, // 書字形出現形 - Surface written form
       basicFormPronunciation,
@@ -148,6 +102,7 @@ export const parseFeature = (feature = ''): Feature => {
     };
   }
 };
+
 
 
 export const parseDump = (dump: string): Token[] => {
