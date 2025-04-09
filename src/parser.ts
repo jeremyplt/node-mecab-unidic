@@ -3,7 +3,7 @@ import {getStat, mecabNaToUndefined} from './util.js';
 
 export const parseFeature = (feature = ''): Feature => {
   const features = feature.split(',');
-  console.log('features', features)
+  // console.log('features', features)
 
   // 0: 感動詞,
 	// 1:	一般,
