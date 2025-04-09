@@ -26,8 +26,6 @@ export const parseFeature = (feature = ''): Feature => {
     features.push(current);
   }
 
-  console.log('features', features)
-
   // UniDic format has more fields than IPADic
   if (features.length >= 17) { // Check if it's likely UniDic format
     const [
