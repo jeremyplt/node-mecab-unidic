@@ -45,6 +45,7 @@ export type Feature = {
   conjugatedForm?: string;
   
   lemma?: string;
+	lemmaReading?: string;
 	basicForm?: string,
 	basicFormPronunciation?: string;
 	basicFormReading?: string,
