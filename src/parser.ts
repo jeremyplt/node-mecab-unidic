@@ -37,18 +37,18 @@ export const parseFeature = (feature = ''): Feature => {
       conjugatedForm, // 活用形 - Conjugation form
       lemmaReading, // 語彙素読み - Lemma reading (コンニチハ)
       lemma, // 語彙素 - Lemma/dictionary form (今日は)
-      null0, // 発音形 - Pronunciation (コンニチワ)
+      _null0, // 発音形 - Pronunciation (コンニチワ)
       pronunciation, // 発音形出現形 - Surface pronunciation
       basicForm, // 書字形出現形 - Surface written form
       basicFormPronunciation,
-      null1,
-      null2,
-      null3,
-      null4,
-      null5,
-      null6,
-      null7,
-      null8,
+      _null1,
+      _null2,
+      _null3,
+      _null4,
+      _null5,
+      _null6,
+      _null7,
+      _null8,
       reading,
       basicFormReading,
       // ... there might be more fields that we'll capture in _
